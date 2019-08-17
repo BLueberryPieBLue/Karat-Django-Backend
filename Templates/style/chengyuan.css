@@ -1,0 +1,47 @@
+#context{
+    width: 1000px;
+    margin: 0 auto 150px;
+}
+#con_top{
+    width: 1000px;
+    height: 140px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 40px;
+    color: #07223d;
+    font-weight: bold;
+}
+#con_bot{
+    width: 1000px;
+    height: 590px;
+}
+#con_bot1{
+    width: 100px;
+    height: 582px;
+    border: solid #000;
+    border-width:  2px 2px 0;
+}
+.zhiwu{
+    width: 100px;
+    height: 95px;
+    border-bottom: solid 2px #000;
+    color: #07223d;
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 95px;
+    text-align: center;
+    cursor: pointer;
+}
+#con_bot2{
+    width: 300px;
+    height: 480px;
+    border: solid 1px #000;
+    margin-top: 51px;
+    margin-left: 15px;
+}
+#con_bot3{
+    width: 560px;
+    height: 480px;
+    border: solid 1px #000;
+    margin-top: 51px;
+}

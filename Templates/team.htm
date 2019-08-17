@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+    <!--<script src="http://cdn.staticfile.org/jquery-easing/1.3/jquery.easing.min.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/easing.js"></script>
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/jquery.fullPage.css">
+    <title>Karat</title>
+</head>
+<script>
+    $(function(){
+        $('#module_out').fullpage({
+            "verticalCentered": "false",
+            "anchors": ['page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7'],
+            "menu": "true",
+            "afterLoad": function(anchorLink, index){
+                if(index == 1){
+                    $('#m_logo').animate({
+                        top: '2%',
+                    }, 1500, 'easeOutExpo');
+			    }
+                if(index == 2){
+                    $('#module_2').find($('.m2_con_img')).delay(100).animate({
+                        top: '0',
+                        opacity: "1"
+                    }, 1500, 'easeOutExpo');
+                    $('#module_2').find($('#m2_content_more')).delay(1000).animate({
+                        right: '0',
+                        opacity: "1"
+                    }, 1500, 'easeOutExpo');
+			    }
+                if(index == 3){
+                    $('#module_3').find($('#m3_content')).delay(100).fadeIn(1000);
+			    }
+                if(index == 4){
+                    $('#module_4').find($('#m4_content')).delay(100).animate({
+                        top: '0',
+                        opacity: "1"
+                    }, 1500, 'easeOutExpo');
+			    }
+                if(index == 5){
+                    $('#module_5').find($('#m5_c1')).find("img").animate({
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        opacity: "1"
+                    }, 2000, 'easeOutExpo'); 
+                    $('#module_5').find($('#m5_c2')).find("img").animate({
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        opacity: "1"
+                    }, 2000, 'easeOutExpo');
+			    }
+                if(index == 6){;
+                    /*---------------------------*/
+                    /*---------------------------*/
+                    /*---------------------------*/
+			    }
+            }
+        });
+    });
+    $(document).ready(function(){
+        $("#m_logo").delay(800).animate({
+            top: '2%',
+            left: "10%"
+        }, 2000, 'easeOutExpo');
+        $("#start").delay(1100).animate({
+            opacity: "1"
+        }, 3000);
+        $("#biaoyu").delay(1500).animate({
+            opacity: "1"
+        }, 3000);
+        $("#biaoyu_e").delay(1500).animate({
+            opacity: "1"
+        }, 3000);
+    });
+</script>
+<body height="100%">
+    <!--[if lte IE 8]>
+        <div id="screen"></div>
+        <div id="browser">
+            <h2>很抱歉，您正在使用的浏览器无法完全支持我们的页面!</h2>
+            <div class="font">
+                建议您使用以下浏览器的最新版本：
+            </div>
+            <div class="logo">
+                <div class="browser_logo">
+                    <a title="谷歌Chrome浏览器" href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank"><img src="images/google.png" alt="" />
+                    <div>谷歌Chrome浏览器</div>
+                    </a>
+                </div>
+                <div class="browser_logo">
+                    <a title="Opera浏览器" href="http://www.opera.com/zh-cn" target="_blank">
+                        <img src="images/opera.png" alt="" />
+                        <div>Opera浏览器</div>
+                    </a>
+                </div>
+                <div class="browser_logo">
+                    <a title="火狐浏览器" href="http://www.firefox.com.cn/" target="_blank">
+                        <img src="images/firefox.png" alt="" />
+                        <div>火狐浏览器</div>
+                    </a>
+                </div>
+            </div>
+        </div
+    <![endif]-->
+    <div id="body">
+        <div id="navigation">
+            <div id="navigation_b">
+                <div id="karat_fa">
+                    <div class="karat_1"><img src="images/KARAT.png" alt=""></div>
+                    <div class="karat_2 dis_none"><img src="images/KARAT_b.png" alt=""></div>
+                </div>
+                <div class="clear"></div>
+                <div class="clear"></div>
+                <div class="nav_mnue">
+                    <div id="nav_b1"  data-menuanchor="page1" class="active">
+                        <a href="#page1">
+                            <div class="nav_b">
+                                <img src="images/main_ico.png" alt="首页">
+                            </div>
+                            <div class="nav_font dis_none">首页</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b2"  data-menuanchor="page2">
+                        <a href="#page2">
+                            <div class="nav_b">
+                                <img src="images/cgzs_ico.png" alt="成果展示">
+                            </div>
+                            <div class="nav_font dis_none">成果展示</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b3" data-menuanchor="page3">
+                        <a href="#page3">
+                            <div class="nav_b">
+                                <img src="images/tddt_ico.png" alt="团队动态">
+                            </div>
+                            <div class="nav_font dis_none">团队动态</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b4" data-menuanchor="page4">
+                        <a href="#page4">
+                            <div class="nav_b">
+                                <img src="images/tdxy_ico.png" alt="团队心语">
+                            </div>
+                            <div class="nav_font dis_none">团队心语</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b5" data-menuanchor="page5">
+                        <a href="#page5">
+                            <div class="nav_b">
+                                <img src="images/tdwh_ico.png" alt="团队文化">
+                            </div>
+                            <div class="nav_font dis_none">团队文化</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b6" >
+                        <a href="http://web.sdut.edu.cn/_s72/_t367/syjz/list.psp" target="_blank">
+                            <div class="nav_b">
+                                <img src="images/syjz_ico.png" alt="岁月卷轴">
+                            </div>
+                            <div class="nav_font dis_none">岁月卷轴</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b7" data-menuanchor="page6">
+                        <a href="#page6">
+                            <div class="nav_b">
+                                <img src="images/tdcy_ico.png" alt="团队成员">
+                            </div>
+                            <div class="nav_font dis_none">团队成员</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b8" data-menuanchor="page7">
+                        <a href="#page7">
+                            <div class="nav_b">
+                                <img src="images/zxns_ico.png" alt="招贤纳士">
+                            </div>
+                            <div class="nav_font dis_none">招贤纳士</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="nav_b9">
+                        <a href="http://web.sdut.edu.cn/_s72/_t367/lyb/list.psp" target="_blank">
+                            <div class="nav_b">
+                                <img src="images/lyb_ico.png" alt="留言板">
+                            </div>
+                            <div class="nav_font dis_none">留言板</div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div id="erweima" class="dis_none">
+                    <div class="ewm "><img src="images/ewm_lgwin.png" alt=""><div class="p">新闻网首页</div></div>
+                    <div class="ewm "><img src="images/ewm_weibo.png" alt=""><div class="p">新闻网微博</div></div>
+                </div>
+            </div>
+        </div>
+        <div id="module_out">
+            <div id="module_1" class="module section">
+                <div id="module_link">
+                    <a href="http://lgwindow.sdut.edu.cn/1062/list.htm" target="_blank"><div class="m_link">光影理工</div></a>
+                    <a href="http://lgwindow.sdut.edu.cn/1060/list.htm" target="_blank"><div class="m_link">校园文化</div></a>
+                    <a href="http://lgwindow.sdut.edu.cn/" target="_blank"><div class="m_link">新闻网</div></a>
+                </div>
+                <div id="m_logo"><img src="images/karatLOGO.png" alt=""></div>
+                <a href="#page2"><div id="start"><img src="images/START.png" alt=""></div></a>
+                <div id="biaoyu"><img src="images/biaoyu.png" alt=""></div>
+                <div id="biaoyu_e"><img src="images/biaoyu_e.png" alt=""></div>
+            </div>
+            <div id="module_2" class="module section">
+                <div class="module_caption">
+                    <img src="images/cgzs.png" alt="成果展示">
+                </div>
+                <div id="m2_body">
+                    <div id="m2_cap">
+                        <a href="http://lgwindow.sdut.edu.cn/1064/list.htm" target="_blank"><div id="ztbd">专题报道</div></a>
+                        <a href="http://lgwindow.sdut.edu.cn/1062/list.htm" target="_blank"><div id="gylg">光影理工</div></a>
+                    </div>
+                    <div id="m2_content">
+                        <div id="m2_content_img" frag="面板1">
+                            <div frag="窗口1">
+                                <div frag="窗口内容">
+                                    <!--[InfoCycleBegin]-->
+                                    <div class="m2_con_img">
+                                        {缩略图}
+                                    </div>
+                                    <!--[InfoCycleEnd]-->
+                                </div>
+                                <div class="clear"></div>
+                                <div id="m2_content_more" frag="按钮" type="更多">
+                                    <img frag="按钮内容" src="images/more.png" alt="More>>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="module_3" class="module section">
+                <div class="module_caption">
+                    <img src="images/tddt.png" alt="团队动态">
+                </div>
+                <div id="m3_content">
+                    <div id="win_1" frag="面板2">
+                        <div frag="窗口2" class="win1height">
+                            <div frag="窗口内容">
+                                    <!--[InfoCycleBegin]-->
+                                <div class="list1"><span class="classleft">{标题}</span><span class="classright">{发布时间}</span></div>
+                                    <!--[InfoCycleEnd]-->
+                            </div>
+                            <div style="margin-right:4%;margin-top:5%;" class="classright" frag="按钮" type="更多"><div frag="按钮内容"><img src="images/more_1.png" alt=""></div></div>
+                        </div>
+                    </div>
+                    <div id="win_2" frag="面板3">
+                        <div frag="窗口3" class="win2height">
+                            <div frag="窗口内容">
+                                    <!--[InfoCycleBegin]-->
+                                <div class="list2"><span class="classleft">{标题}</span><span class="classright">{发布时间}</span></div>
+                                    <!--[InfoCycleEnd]-->
+                            </div>
+                            <div style="margin-right:4%;margin-top:5%;" class="classright" frag="按钮" type="更多"><div frag="按钮内容"><img src="images/more_1.png" alt=""></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="module_4" class="module section">
+                <div class="module_caption">
+                    <img src="images/tdxy.png" alt="团队心语">
+                </div>
+                <div id="m4_content">
+                    <div id="win_3" frag="面板4">
+                        <div frag="窗口4">
+                            <div frag="窗口内容">
+                                <div id="win3_title"><span>{标题}</span></div>
+                                <div id="win3_art">
+                                    {简介}
+                                </div>
+                            </div>
+                            <div id="win_3more" frag="按钮" type="更多"><div frag="按钮内容">EREAD MORE</div></div>
+                        </div>
+                    </div>
+                    <div id="win_4" frag="面板5">
+                        <div frag="窗口5">
+                            <div frag="窗口内容">
+                                <div class="win4_con">
+                                    <div class="win4img">{图片}</div>
+                                    <div class="win4_title"><div>{标题}</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="win_5">
+                        <div>
+                            <img src="images/more_2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="module_5" class="module section">
+                <div class="module_caption">
+                    <img src="images/tdwh.png" alt="团队文化">
+                </div>
+                <div id="m5_content">
+                    <a href="http://web.sdut.edu.cn/_s72/_t367/tdwh/list.psp" target="_blank">
+                    <div id="m5_c1">
+                        <img src="images/karat_cs.png" alt="">
+                    </div>
+                    <div id="m5_c2">
+                        <img src="images/karat_cb.png" alt="">
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div id="module_6" class="module section">
+                <div class="module_caption">
+                    <img src="images/tdcy.png" alt="团队成员">
+                </div>
+                <div id="m6_content">
+                    <div id="m6_c1">
+                        <div id="m6_c1_list">
+                            <div id="num1" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num2" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num3" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num4" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num5" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num6" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num7" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num8" class="all_num anima"><img src="images/pyy.png" alt=""></div>
+                            <div id="num9" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num10" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num11" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num12" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num13" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num14" class="all_num"><img src="images/pyy.png" alt=""></div>
+                            <div id="num15" class="all_num"><img src="images/pyy.png" alt=""></div>
+                        </div>
+                        <div id="m6_c1_button">
+                            <a class="left" href="javascript:void(0)"></a>
+                            <a class="right" href="javascript:void(0)"></a>
+                        </div>
+                        <div id="name">
+                            <p class="zhiwu">第XX届站长</p>
+                            <p class="xingming">彭于晏</p>
+                        </div>
+                    </div>
+                    <div id="m6_c2">
+                      <!--  <div class="c2_all">
+                            <img class="zhaopian" src="images/pyyfang.png" alt="">
+                            <p class="zwxm">采编负责人 彭于晏</p>
+                        </div>
+                        <div class="c2_all">
+                            <img class="zhaopian" src="images/pyyfang.png" alt="">
+                            <p class="zwxm">综合负责人 彭于晏</p>
+                        </div>
+                        <div class="c2_all">
+                            <img class="zhaopian" src="images/pyyfang.png" alt="">
+                            <p class="zwxm">摄影负责人 彭于晏</p>
+                        </div>
+                        <div class="c2_all">
+                            <img class="zhaopian" src="images/pyyfang.png" alt="">
+                            <p class="zwxm">美编负责人 彭于晏</p>
+                        </div>
+                        <div class="c2_all">
+                            <img class="zhaopian" src="images/pyyfang.png" alt="">
+                            <p class="zwxm">程序负责人 彭于晏</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div id="module_7" class="module section">
+                <div class="module_caption">
+                    <img src="images/gnxs.png" alt="广纳贤士">
+                </div>
+                <div id="m7_c">
+                    <div id="m7_c1">
+                        <div id="m7_c1_l">
+                            <div id="m7_c1_lt">
+                                <img src="images/caibian_img.jpg" alt="">
+                                <div id="touming"></div>
+                                <div class="text"><p>采编：<br/>
+                                        培养方向：<br/>
+                                        新闻记者、新闻编辑、新闻摄影、网络策划<br/>
+                                        要求：<br/>
+                                        1、具有较强的责任感和良好的团队合作精神；勤奋好学，工作认真。<br/>
+                                        2、喜欢新闻事业，文笔流畅，有较强新闻敏感性、政治敏感性；<br/>
+                                        3、对新闻写作、文学作品、时尚娱乐、音乐鉴赏有一定兴趣或了解；<br/>
+                                        4、有一定版面策划能力，具备基本电脑操作技能和网络知识、创意丰富、见解独到。</p></div>
+                                <div class="text"><p>摄影：<br/>
+                                        培养方向：<br/>
+                                        新闻摄影、人像摄影、风景摄影<br/>
+                                        要求：<br/>
+                                        1、热爱摄影；<br/>
+                                        2、人品佳，三观正，工作积极认真，有责任心；<br/>
+                                        3、具有良好的摄影构图审美能力；<br/>
+                                        4、有单反并且有摄影经验者优先考虑。</p></div>
+                                <div class="text"></div>
+                                <div class="text"><p>综合：<br/>
+                                        培养方向：<br/>
+                                        策划编辑、办公管理<br/>
+                                        要求：<br/>
+                                        1、具有较强的责任感、良好的奉献精神和强烈的团队合作意识；<br/>
+                                        2、有较强的人际沟通能力和一定的统筹管理能力；<br/>
+                                        3、具备一定的分析能力和组织能力，执行力强，有服务意识和大局意识；<br/>
+                                        4、喜欢新闻事业，具有良好的文字驾驭能力，能够熟练操作各类常用办公软件。</p></div>
+                                <div class="text"></div>
+                            </div>
+                            <div id="m7_c1_lb">
+                                <div id="m7_c1_lbl"><img src="images/sheying.jpg" alt=""></div>
+                                <div id="m7_c1_lbr"><img src="images/chengxu.jpg" alt=""></div>
+                            </div>
+                        </div>
+                        <div id="m7_c1_r">
+                            <div id="m7_c1_rt"><img src="images/zonghe.jpg" alt=""></div>
+                            <div id="m7_c1_rb"><img src="images/meibian.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div id="more"><img src="images/more_3.png" alt=""></div>
+                </div>
+                <div id="m7_foot">
+                    <div id="footer">
+                        <div class="c_left">
+                            <div id="xiaoxun">
+                                <img src="images/xiaoxun.png" alt="">
+                            </div>
+                            <div id="banquan">
+                                    <p>版权所有©山东理工大学党委宣传部</p>
+                                    <p>地址：山东省淄博市张店区新村西路266号</p>
+                                    <p>联系电话:0533-2786727</p>
+                                    <p>邮编：255049</p>
+                            </div>
+                        </div>
+                        <div class="c_right">
+                            <div id="erweima_foot">
+                                <div class="ewm_foot"><img src="images/1.png" alt=""></div>
+                                <div class="ewm_foot"><img src="images/2.png" alt=""></div>
+                                <div class="ewm_foot"><img src="images/3.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hidden" hidden="hidden">
+        <div frag="面板9" style="width:150px;height:150px;position:absolute;z-index:9999;top:10px;left:150px;">
+            <div frag="窗口9">
+                <div frag="窗口内容">
+                    <!--[InfoCycleBegin]-->
+                    <div class="name">{标题}</div>
+                    <div class="zhiwu">{副标题}</div>
+                    <div class="link">{图片路径}</div>
+                    <!--[InfoCycleEnd]-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hidden" hidden="hidden">
+        <div frag="面板10" style="width:150px;height:150px;position:absolute;z-index:9999;top:10px;left:150px;">
+            <div frag="窗口10">
+                <div frag="窗口内容">
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+  $(document).ready(function(){
+         //渲染内容
+    var wrap = document.getElementById("m6_c2"),
+        wrapDiv = document.createElement("div");
+        wrap.style.overflow="hidden";
+        wrap.style.position="relative";
+        wrapDiv.style.height = "219px";
+        wrapDiv.className = "_wrapDiv";
+        var len = w10imgJsons.length;
+        wrapDiv.style.width = len*200 + "px";
+    
+        var leftBtn = document.createElement("div");
+        var rightBtn = document.createElement("div");
+        cssStyle="display:none;border-radius:7px;font-size:25px;cursor:pointer;z-index:999;position:absolute;top:0px;width:25px;height:219px;background-color:rgba(0,0,0,0.3);text-align:center;line-height:219px;color:#fff;"
+        rightBtn.style.cssText = leftBtn.style.cssText = cssStyle;
+        rightBtn.className = leftBtn.className = "turn-btn";
+        rightBtn.style.right = "0px";
+        leftBtn.style.left = "0px";
+        leftBtn.innerHTML = "&lt;";
+        rightBtn.innerHTML = "&gt;";
+        leftBtn.idx = 0;
+        rightBtn.idx = 1;
+        wrap.appendChild(leftBtn);
+        wrap.appendChild(rightBtn);
+        wrap.appendChild(wrapDiv);
+
+        for(var i = 0;i<len; i++){
+            var div = document.createElement("div"),
+                img = document.createElement("img"),
+                p = document.createElement("p");
+                div.className = "c2_all";
+                img.src = w10imgJsons[i].src;
+                img.className = "zhaopian";
+                img.style.maxHeight = "200px";
+                p.className = "zwxm";
+                p.innerText = w10imgJsons[i].title;
+                div.appendChild(img);
+                div.appendChild(p);
+                wrapDiv.appendChild(div);
+        }
+
+        //获取样式
+        function getStyle(ele) {
+            var style = null;
+            
+            if(window.getComputedStyle) {
+                style = window.getComputedStyle(ele, null);
+            }else{
+                style = ele.currentStyle;
+            }
+            
+            return style;
+        }
+        //wrapDiv移动
+
+        var showW = parseInt(getStyle(wrap).width),
+            sumW = parseInt(200*w10imgJsons.length),
+            actLen = showW - sumW;
+            
+          
+        leftBtn.onclick= function(){
+           
+            msgMove(leftBtn);
+        }
+
+        rightBtn.onclick = function(){
+            msgMove(rightBtn);
+        }
+
+        function msgMove(obj){
+            var ml = parseInt(getStyle(wrapDiv).marginLeft);
+            if(obj.idx){
+                ml =  (ml-showW) <= actLen ? actLen : (ml-showW);    
+            }else{
+                ml = (ml+showW)>=0 ? 0 : (ml+showW);
+            }
+            
+            $("div._wrapDiv").animate({
+                    "marginLeft" : ml 
+            },800);
+        }
+   $("#m6_c2").hover(function(){
+            $(".turn-btn").fadeIn(500);
+        },function(){
+            $(".turn-btn").fadeOut(500);
+        });
+   });
+
+
+</script>
+</body>
+</html>

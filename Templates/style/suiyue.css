@@ -1,0 +1,75 @@
+#context{
+    width: 920px;
+    background-color: #07223d;
+    margin: 0 auto 20px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 35px;
+    padding: 40px;
+}
+#mnue{
+    width: 1000px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+#suiyue{
+    width: 1000px;
+    height: 245px;
+    position: absolute;
+    display: none;
+}
+#sytrans{
+    width: 1000px;
+    height: 245px;
+    margin: 0 auto;
+}
+#syleft{
+    width: 30px;
+    height: 245px;
+    cursor: pointer;
+}
+#syleft img{
+    margin-top: 103px;
+}
+#sycenter{
+    width: 936px;
+    height: 245px;
+    overflow: hidden;
+}
+#symove{
+    /*width: 2000px;*/
+    height: 245px;
+    position: relative;
+    /*left: -120px;*/
+}
+.sysj{
+    width: 100px;
+    height: 233px;
+    margin: 6px 9px;
+    background-color: #07223d;
+    cursor: pointer;
+}
+.sysj span{
+    width: 100px;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+#syright{
+    width: 30px;
+    height: 245px;
+    cursor: pointer;
+}
+#syright img{
+    margin-top: 103px;
+}
+#xz_img{
+    width: 245px;
+    height: 245px;
+    margin: 0 auto;
+    position: relative;
+    background: url(../images/xz_five.png);
+}

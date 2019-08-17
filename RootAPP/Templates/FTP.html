@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FTP</title>
+</head>
+    {% if current %}
+    <h1>
+        {{ current}}
+    </h1>
+    <br>
+        <h2>文件夹</h2><br>
+        {% if parent %}
+        <a href="{{ parent }}">../</a>
+        {% endif %}
+        {% if path %}
+            {% for p in path %}
+            <a href="/KaratRoot/FTP/{{p.url}}">{{  p.name }}</a>
+            </br>
+            {% endfor %}
+        {% endif %}
+        <p>---------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h2>文件：</h2><br>
+        {% if file %}
+            {% for f in file %}
+                {% if f.canRead %}
+                    <!--<a href="https://www.aicheteach.com/KaratRoot/FTPDownload/{{ f.url }}" target="_blank">{{ f.name }}</a></br>-->
+                    <a href="http//{{ request.get_host }}/KaratRoot/FTPDownload/{{ f.url }}" target="_blank">{{ f.name }}</a></br>
+                {% else %}
+                    {{ f.name }}
+                    </br>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        file not exist
+        {% endif %}
+        <p>---------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h2>Upload：</h2><br>
+        <form enctype="multipart/form-data" action="/KaratRoot/Upload/{{ current}}" method="post">
+         <input type="file" name="myfile" />
+            <br/>
+         <input type="submit" value="upload"/>
+        </form>
+    </body>
+{% endif %}
+</html>

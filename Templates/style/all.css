@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.clear{
+    clear: both;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+#body{
+    width: 100%;
+    background: url(../images/background.png);
+}
+#position{
+    width: 1000px;
+    height: 100px;
+    margin: 0 auto;
+}
+#posi{
+    width: 500px;
+    height: 100px;
+}
+#posi_right{
+    width: 500px;
+    height: 100px;
+}
+#posi_right img{
+    height: 35px;
+    margin: 30px 0;
+    float: right;
+}
+.Column_Position{
+    height: 100px;
+    display: block;
+}
+.Column_Position a{
+    line-height: 100px;
+    text-decoration: none;
+    color: #000;
+    font-size: 23px;
+}
+.Column_Position span{
+    line-height: 100px;
+    text-decoration: none;
+    color: #000;
+    font-size: 23px;
+}

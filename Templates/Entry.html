@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {#    <!--cdn-->#}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <title>{{ title.head }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//{{ RequestHost}}{% static 'lib/bootstrap-3.3.7-dist/css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" href="//{{ RequestHost}}{% static 'lib/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <link rel="Shortcut Icon" type="images/x-icon" href="{% static 'images/Ico.ico' %}">
+    <script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//{{ RequestHost}}{% static 'lib/jquery1.9.1.min.js' %}"></script>
+    <script src="//{{ RequestHost}}{% static 'lib/jquery.cookie.js' %}"></script>
+    <script src="//{{ RequestHost}}{% static 'lib/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+{#    <script src="//{{ RequestHost}}/script/tools/getip.js"></script>#}
+    <!--[if IE]>
+　　<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+ 　　<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="height:100%;background-color: #252568;">
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row" style="background-color: #252568">
+                <div class="col-lg-3 col-sm-0 col-xs-0"></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-info">
+                        {# panel-success,panel-info,panel-warning,panel-danger#}
+                        <div class="panel-heading bg">
+                            <h1 class="panel-title text-center text-info">
+                                {{ title.title }}
+                            </h1>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-horizontal " role="form">
+{#                                <!--账号输入框-->#}
+                                {% if title.login == 1 or title.regis == 1 or title.reset == 1%}
+                                <div class="form-group noregis format">
+                                    <label for="mail" class="col-xs-2 col-sm-2 col-md-2 control-label form-label">Email</label>
+                                    <div class="col-xs-10 col-sm-12 col-md-10">
+                                        <input type="email" class="form-control" id="mail" placeholder="请输入您的邮箱" autocomplete="off">
+                                        <p class="help-block noregis format"></p>
+                                    </div>
+                                </div>
+                                {% endif %}
+{#                            <!--***************注册验证码************-->#}
+                                {% if title.regis == 1 or title.reset == 1 %}
+                                 <div class="form-group tokengroup">
+                                       <div class="col-xs-3 col-sm-3 col-md-5 pull-right">
+                                            <button type="button" class="btn pull-right btn-primary btn-sm" id="gettoken">申请验证码</button>
+                                        </div><br><br>
+                                        <label class="col-xs-2 col-sm-2 col-md-2 control-label form-label" for="token">验证码</label>
+                                        <div class="col-xs-9 col-sm-9 col-md-offset-1 col-md-6 ">
+                                            <input type="text" id="token" placeholder="请输入验证码" class="input-sm" autocomplete="off">
+                                            <p class="help-block token-help"></p>
+                                        </div>
+
+                                </div>
+                                {% endif %}
+{#                            <!--nickname输入框-->#}
+                                {% if title.regis == 1 %}
+                                <div class="form-group nickgrouup">
+                                    <label for="nickname" class="col-xs-2 col-sm-2 col-md-2 control-label form-label">Name</label>
+                                    <div class="col-xs-10 col-sm-12 col-md-10">
+                                        <input type="text" class="form-control" id="nickname" placeholder="请输入您的昵称" autocomplete="off">
+                                        <p class="help-block nicknamenote1"></p>
+                                        <p class="help-block nicknamenote2">昵称应以字母开头且长度在5位-20位</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+{#                                <!--密码输入框一-->#}
+                                <div class="form-group pwderr1">
+                                    <label for="inputPassword1" class="col-xs-2 col-sm-3 col-md-2 control-label form-label">Password</label>
+                                    <div class="col-xs-10 col-sm-9 col-md-10">
+                                        <input type="password" class="form-control" id="inputPassword1" placeholder="请输入密码" autocomplete="off">
+                                        <p class="help-block pwderr1"></p>
+                                        {% if not title.login %}
+                                          <p class="help-block pwdnote">密码应包含：大小写字母、数字、符号，且长度在8位-32位</p>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+{#                                <!--密码输入框二-->#}
+                                {% if title.regis == 1 or title.reset == 1%}
+                                <div class="form-group pwderr2">
+                                    <label for="inputPassword2" class="col-xs-2 col-sm-3 col-md-2 control-label form-label">Password</label>
+                                    <div class="col-xs-10 col-sm-9 col-md-10">
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="请再次输入密码" autocomplete="off">
+                                        <p class="help-block pwderr countunregis pwderr2"></p>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                <div class="form-group">
+                                    {% if title.login == 1 %}
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-block btn-primary" id="login">{{ title.buttontitle }}</button>
+                                        </div>
+                                        <label class="pull-left">
+                                            <p class="help-block"><div class="btn btn-sm btn-link" id="loginregis">注册</div></p>
+                                        </label>
+                                        <label class="pull-right">
+                                            <p class="help-block"><div class="btn btn-sm btn-link" id="loginreset">重置密码</div></p>
+                                        </label>
+                                    </div>
+                                    {% endif %} {% if title.regis == 1 or title.reset == 1 %}
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-block btn-primary" id="regis">{{ title.buttontitle }}</button>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <p class="text-info text-center">
+                                技术支持由Karat团队提供
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-0 col-xs-0"></div>
+            </div>
+        </div>
+</body>
+
+<script>
+    {#//**************************#}
+     {#注册页#}
+     {#    用户名输入框组失去焦点#}
+     {#    用户邮箱输入框失去焦点#}
+     {#    用户注册密码输入框失去焦点#}
+     {#    用户注册密码确认失去焦点#}
+     {#    用户提交验证码申请#}
+     {#    用户注册#}
+     {# 重置#}
+     {#    用户邮箱输入框失去焦点#}
+     {#    用户密码输入框失去焦点#}
+     {#    用户密码确认框失去焦点#}
+     {#    用户提交验证码申请#}
+     {#    用户重置#}
+     {#登录页#}
+     {#    用户邮箱输入框失去焦点#}
+    {#   用户登录密码输入框失去焦点#}
+    {#    用户选择密码重置#}
+    {#    用户选择注册#}
+    {#    用户注册#}
+    {#//***************************************************获取验证码倒计时***************************************************************#}
+    var time = 120;
+    {#//倒计时#}
+    function Time() {
+        if (time === 0) {
+            time = 120;
+            fgettoken=true;
+            $("#gettoken").html("重新申请验证码");
+            return;
+        } else {
+            time--;
+            $("#gettoken").html(time+"s后重新申请验证码");
+        }
+        setTimeout(function () {
+            Time();
+        }, 1000);
+    }
+    {#****************************************获取URL参数***************************************************************************************************#}
+    function getURL(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+    }
+    {#****************************************登录后页面跳转***************************************************************************************************#}
+    var en=null,page=0;
+    var params=getURL('page'),to=getURL('to');
+        if(params!=undefined){
+            page=parseInt(params);
+        }else{
+            page=0;
+        }
+    function En(data) {
+         $.ajax({
+                url: "//{{ RequestHost}}/En/",
+                type: "POST",
+                data: data,
+                async: true,
+                dataType: "json",
+                timeout: 5000,
+                success: function(data) {
+                    {#console.log(data,page);#}
+                    if (data['code'] == 1) {
+                        switch (page) {
+                            case 0:
+                                {#新闻网主页   默认page=0#}
+                                window.location.href = "https://lgwindow.sdut.edu.cn/?page=" + data['en'];
+                                break;
+                            case 100:
+                                {#UserModule.js 默认跳转页面#}
+                                window.location.href = to+"?page=" + data['en'];
+                                break;
+                            case 1:
+                                {#投票页#}
+                                 window.location.href = "https://lgwindow.sdut.edu.cn/_t1142/692/list.htm?page=" + data['en'];
+                                break;
+                            case 2:
+                                {#前端cookie测试#}
+                                window.location.href = "//{{ RequestHost}}/cookie/?page=" + data['en'];
+                                break;
+                            default:
+                                alert("Welcome");
+                                window.location.href = "https://lgwindow.sdut.edu.cn/?page=" + data['en'];
+                        }
+
+                    }else{
+                        alert("SYSTEM ERROR");
+                        window.location.href = "https://lgwindow.sdut.edu.cn/"
+                    }
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+    }
+    {#//*****************************************************首先查看当前是在哪个页面*************************************#}
+    var fnickname=false,fmail=false,finputPassword1=false,finputPassword2=false,ftoken=false,fgettoken=true;
+    var pagelist = ['注册', '登录', '重置'];
+    var btnlist = $("button");
+    var flagtext = '';
+    var locflag; {#//页面标识 0 注册页；1 登录页；2 重置密码页#}
+    var pattern = new RegExp('');
+    var i, j;
+    for (i = 0; i < btnlist.length; i++) {
+        flagtext += $("button")[i].innerHTML
+    }
+    for (i = 0; i < pagelist.length; i++) {
+        pattern.compile(pagelist[i]);
+        if (pattern.test(flagtext)) {
+            locflag = i;
+            break;
+        }
+    }
+    switch (locflag) {
+        case 0:
+                {% if title.regis == 1%}
+                  {#//locflag 0 注册页#}
+                  {#  //   1 登录页#}
+                  {#  //   2 密码重置页#}
+                  {#  //********************************************************************************************这是注册页OK#}
+                {#//用户名输入框组失去焦点OK#}
+                $("#nickname").blur(function() {
+                    var data = {
+                        'username': $("#nickname").val(),
+                    };
+                    if ($("#nickname").val()!=""){
+                        regisAjax(1, data);
+                    }else{
+                          $('.help-block.nicknamenote1').html("昵称不能为空");
+                          $('.form-group.nickgrouup').removeClass('has-success');
+                          $('.form-group.nickgrouup').addClass('has-error');
+                          $('.help-block.nicknamenote2').hide();
+                          $('.help-block.nicknamenote1').show();
+                          fnickname=false;
+                    }
+                });
+                {#//用户邮箱输入框失去焦点OK#}
+                $("#mail").blur(function() {
+                    var data = {
+                        'Email': $("#mail").val(),
+                    };
+                     if ($("#mail").val()!=""){
+                         regisAjax(2, data);
+                    }else{
+                         $('.form-group.noregis.format').removeClass('has-success');
+                         $('.form-group.noregis.format').addClass('has-error');
+                         $('.help-block.noregis.format').html('邮箱不能为空');
+                         $('.help-block.noregis.format').show();
+                         fmail=false;
+                     }
+                });
+                {#//用户邮箱验证码输入框失去焦点OK#}
+                $("#token").blur(function() {
+                     if ($("#token").val()!=""){
+                         $('.form-group.tokengroup').addClass('has-success');
+                         $('.form-group.tokengroup').removeClass('has-error');
+                         $('.help-block.token-help').hide();
+                         ftoken=true;
+                    }else{
+                        $('.form-group.tokengroup').removeClass('has-success');
+                         $('.form-group.tokengroup').addClass('has-error');
+                         $('.help-block.token-help').html('邮箱验证码不能为空');
+                         $('.help-block.token-help').show();
+                         ftoken=false;
+                     }
+                });
+                {#//用户注册密码输入框1失去焦点OK#}
+                $("#inputPassword1").blur(function() {
+                    var data = {
+                        'password': $("#inputPassword1").val(),
+                    };
+                     if ($("#inputPassword1").val()!=""){
+                         regisAjax(3, data);
+                    }else{
+                         $('.form-group.pwderr1').addClass('has-error');
+                         $('.help-block.pwderr1').html("密码不能为空");
+                         $('.help-block.pwdnote').hide();
+                         $('.help-block.pwderr1').show();
+                         finputPassword1=false;
+                     }
+                });
+                {#//用户注册密码输入框2失去焦点OK#}
+                $("#inputPassword2").blur(function() {
+                     if ($("#inputPassword1").val()!=""&&$("#inputPassword2").val()!=""){
+                        if($("#inputPassword1").val() == $("#inputPassword2").val()){
+                            $('.form-group.pwderr2').addClass('has-success');
+                            $('.form-group.pwderr2').removeClass('has-error');
+                            $('.help-block.pwderr.countunregis.pwderr2').hide();
+                            finputPassword2=true;
+                        }
+                        if ($("#inputPassword1").val()!=$("#inputPassword2").val()){
+                            $('.form-group.pwderr2').addClass('has-error');
+                            $('.form-group.pwderr2').removeClass('has-success');
+                            $('.help-block.pwderr.countunregis.pwderr2').html('密码不一致');
+                            $('.help-block.pwderr.countunregis.pwderr2').show();
+                            finputPassword2=false;
+                        }
+                     }else{
+                         $('.form-group.pwderr2').addClass('has-error');
+                            $('.form-group.pwderr2').removeClass('has-success');
+                            $('.help-block.pwderr.countunregis.pwderr2').html('密码不能为空');
+                            $('.help-block.pwderr.countunregis.pwderr2').show();
+                            finputPassword2=false;
+                     }
+                });
+                {#//用户提交注册验证码申请OK#}
+                $("#gettoken").bind( 'click' , function(){
+                    var data = {
+                        'Email': $("#mail").val(),
+                        'task': '0', {#//注册验证#}
+                    };
+
+                    if(fmail&&fgettoken){
+                        regisAjax( 5, data );
+                        fgettoken=false;
+                        Time();
+                    }else{
+                        return false;
+                    }
+
+                });
+                {#//用户注册OK#}
+                $("#regis").bind('click', function(e) {
+                    var data = {
+                        'Email': $("#mail").val(),
+                        'username': $("#nickname").val(),
+                        'password': $("#inputPassword1").val(),
+                        'token': $("#token").val(),
+                    };
+                    if(fmail&&ftoken&&fnickname&&finputPassword1&&finputPassword2){
+                        regisAjax(6, data);
+                    }else{
+                        return false;
+                    }
+                });
+                {% endif%}
+                break;
+        case 1:
+            {% if title.login == 1%}
+                {#//********************************************************************************************这是登录页OK#}
+
+                {#//账号输入框失去焦点OK#}
+               $("#mail").blur(function() {
+                    var data = {
+                        'Email': $("#mail").val(),
+                    };
+                     if ($("#mail").val()!=""){
+                          logInAjax(1,data);
+                    }else{
+                         $('.form-group.noregis.format').removeClass('has-success');
+                         $('.form-group.noregis.format').addClass('has-error');
+                         $('.help-block.noregis.format').html('邮箱不能为空');
+                         $('.help-block.noregis.format').show();
+                         fmail=false;
+                     }
+                });
+                {#//密码输入框失去焦点OK#}
+                $("#inputPassword1").blur(function() {
+                    var data = {
+                        'password': $("#inputPassword1").val(),
+                    };
+                     if ($("#inputPassword1").val()!=""){
+                         $('.form-group.pwderr1').addClass('has-success');
+                         $('.form-group.pwderr1').removeClass('has-error');
+                         $('.help-block.pwdnote').hide();
+                         $('.help-block.pwderr1').hide();
+                         finputPassword1=true;
+                         logInAjax(2,data);
+                    }else{
+                         $('.form-group.pwderr1').removeClass('has-success');
+                         $('.form-group.pwderr1').addClass('has-error');
+                         $('.help-block.pwderr1').html("密码不能为空");
+                         $('.help-block.pwdnote').hide();
+                         $('.help-block.pwderr1').show();
+                         finputPassword1=false;
+                     }
+                });
+                {#//这是登录页，点击了登录按钮OK#}
+                $("#login").click(function() {
+                    var customer = {
+                        'Email': $("#mail").val(),
+                        'password': $("#inputPassword1").val(),
+                    };
+                    data =customer;
+                    if(fmail&&finputPassword1){
+                        logInAjax(3, data);
+                    }else{
+                        return false;
+                    }
+                });
+                {#//点击了注册(跳转到注册页)OK#}
+                $("#loginregis").click(function() {
+                    var data=null;
+                    logInAjax(4, data);
+                });
+                {#//点击了密码重置 （跳转到密码重置页）OK#}
+                $("#loginreset").click(function() {
+                    var data=null;
+                    logInAjax(5, data);
+                });
+                {% endif %}
+                break;
+        case 2:
+             {% if title.reset == 1%}
+            {#//********************************************************************************************这是密码重置页#}
+                  {#//用户邮箱输入框失去焦点OK#}
+                $("#mail").blur(function() {
+                    var data = {
+                        'Email': $("#mail").val(),
+                    };
+                     if ($("#mail").val()!=""){
+                         resetPwdAjax(1, data);
+                    }else{
+                         $('.form-group.noregis.format').removeClass('has-success');
+                         $('.form-group.noregis.format').addClass('has-error');
+                         $('.help-block.noregis.format').html('邮箱不能为空');
+                         $('.help-block.noregis.format').show();
+                         fmail=false;
+                     }
+                });
+                {#//用户邮箱验证码输入框失去焦点OK#}
+                $("#token").blur(function() {
+                     if ($("#token").val()!=""){
+                         $('.form-group.tokengroup').addClass('has-success');
+                         $('.form-group.tokengroup').removeClass('has-error');
+                         $('.help-block.token-help').hide();
+                         ftoken=true;
+                    }else{
+                        $('.form-group.tokengroup').removeClass('has-success');
+                         $('.form-group.tokengroup').addClass('has-error');
+                         $('.help-block.token-help').html('邮箱验证码不能为空');
+                         $('.help-block.token-help').show();
+                         ftoken=false;
+                     }
+                });
+                {#//用户密码输入框1失去焦点OK#}
+                $("#inputPassword1").blur(function() {
+                    var data = {
+                        'password': $("#inputPassword1").val(),
+                    };
+                     if ($("#inputPassword1").val()!=""){
+                         resetPwdAjax(2, data);
+                    }else{
+                         $('.form-group.pwderr1').addClass('has-error');
+                         $('.help-block.pwderr1').html("密码不能为空");
+                         $('.help-block.pwdnote').hide();
+                         $('.help-block.pwderr1').show();
+                         finputPassword1=false;
+                     }
+                });
+
+                $("#inputPassword2").blur(function() {
+                     if ($("#inputPassword1").val()!=""&&$("#inputPassword2").val()!=""){
+                        if($("#inputPassword1").val() == $("#inputPassword2").val()){
+                            $('.form-group.pwderr2').addClass('has-success');
+                            $('.form-group.pwderr2').removeClass('has-error');
+                            $('.help-block.pwderr.countunregis.pwderr2').hide();
+                            finputPassword2=true;
+                        }
+                        if ($("#inputPassword1").val()!=$("#inputPassword2").val()){
+                            $('.form-group.pwderr2').addClass('has-error');
+                            $('.form-group.pwderr2').removeClass('has-success');
+                            $('.help-block.pwderr.countunregis.pwderr2').html('密码不一致');
+                            $('.help-block.pwderr.countunregis.pwderr2').show();
+                            finputPassword2=false;
+                        }
+                     }else{
+                         $('.form-group.pwderr2').addClass('has-error');
+                            $('.form-group.pwderr2').removeClass('has-success');
+                            $('.help-block.pwderr.countunregis.pwderr2').html('密码不能为空');
+                            $('.help-block.pwderr.countunregis.pwderr2').show();
+                            finputPassword2=false;
+                     }
+                });
+                {#//用户提交验证码申请OK#}
+                $("#gettoken").bind( 'click' , function(){
+                    var data = {
+                        'Email': $("#mail").val(),
+                        'task': '1',
+                    };
+
+                    if(fmail&&fgettoken){
+                         resetPwdAjax(3, data);
+                        fgettoken=false;
+                        Time();
+                    }else{
+                        return false;
+                    }
+
+                });
+                $("#regis").bind('click', function(e) {
+                    var data = {
+                        'Email': $("#mail").val(),
+                        'username': $("#nickname").val(),
+                        'password': $("#inputPassword1").val(),
+                        'token': $("#token").val(),
+                    };
+                    if(fmail&&ftoken&&finputPassword1&&finputPassword2){
+                         resetPwdAjax(4, data);
+                    }else{
+                        return false;
+                    }
+                });
+            {% endif %}
+            break;
+    }
+    {% if title.regis == 1%}
+    function regisAjax(type, data) {
+        {#//type 1 验证nickname合法性#}
+        {#//     2 验证邮箱格式是否合法以及是否被注册#}
+        {#//     3 验证第一次输入的密码是否合法#}
+        {#//     4 验证第二次输入的密码是否合法#}
+        {#//     5 发送验证码请求#}
+        {#//     6 发送注册请求#}
+        switch (type) {
+            case 1:
+                {#//1 验证nickname合法性 OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/CheckUsername/",
+                    type: "POST",
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    data: data,
+                    success: function(data) {
+                         if( data['code'] == 1){
+                             $('.form-group.nickgrouup').removeClass('has-error');
+                             $('.form-group.nickgrouup').addClass('has-success');
+                             $('.help-block.nicknamenote1').hide();
+                             $('.help-block.nicknamenote2').hide();
+                             fnickname=true;
+                        }else if( data['code'] == 2){
+                              $('.help-block.nicknamenote1').html("昵称已被注册");
+                              $('.form-group.nickgrouup').removeClass('has-success');
+                              $('.form-group.nickgrouup').addClass('has-error');
+                              $('.help-block.nicknamenote2').hide();
+                              $('.help-block.nicknamenote1').show();
+                              fnickname=false;
+                        }else if( data['code'] == 3){
+                              $('.help-block.nicknamenote1').html("昵称应以字母开头且长度在5位-20位");
+                              $('.form-group.nickgrouup').removeClass('has-success');
+                              $('.form-group.nickgrouup').addClass('has-error');
+                              $('.help-block.nicknamenote2').hide();
+                               $('.help-block.nicknamenote1').show();
+                               fnickname=false;
+                        }else if( data['code'] == 0){
+                              $('.help-block.nicknamenote1').html("SYSTEM ERROR");
+                              $('.form-group.nickgrouup').removeClass('has-success');
+                              $('.form-group.nickgrouup').addClass('has-error');
+                              $('.help-block.nicknamenote2').hide();
+                              $('.help-block.nicknamenote1').show();
+                              fnickname=false;
+                         }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 2:
+                {#//2 验证邮箱格式是否合法以及是否被注册OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/CheckEmail/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        if (data['code'] == 0) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('SYSTEM ERROR');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 1) {
+                             $('.form-group.noregis.format').removeClass('has-error');
+                             $('.form-group.noregis.format').addClass('has-success');
+                             $('.help-block.noregis.format').hide();
+                             fmail=true;
+                        } else if (data['code'] == 2) {
+                             $('.form-group.noregis.format').removeClass('has-success');
+                             $('.form-group.noregis.format').addClass('has-error');
+                             $('.help-block.noregis.format').html('邮箱已经注册');
+                             $('.help-block.noregis.format').show();
+                             fmail=false;
+                        } else if (data['code'] == 3) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('邮箱格式错误');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 4) {
+                           $('.form-group.noregis.format').removeClass('has-error');
+                            $('.form-group.noregis.format').addClass('has-success');
+                            $('.help-block.noregis.format').html('邮箱暂未激活');
+                            $('.help-block.noregis.format').show();
+                            fmail=true;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 3:
+                {#//     3 验证第一次输入的密码是否合法OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/CheckPassword/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        if (data['code'] == 0) {
+                             $('.form-group.pwderr1').addClass('has-error');
+                            $('.help-block.pwderr1').html("SYSTEM ERROR");
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').show();
+                            finputPassword1=false;
+                        } else if (data['code'] == 1) {
+                            $('.form-group.pwderr1').addClass('has-success');
+                            $('.form-group.pwderr1').removeClass('has-error');
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').hide();
+                            finputPassword1=true;
+                        } else if (data['code'] == 2) {
+                            $('.form-group.pwderr1').addClass('has-error');
+                            $('.help-block.pwderr1').html("密码应包含：大小写字母、数字、符号，且长度在8位-32位");
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').show();
+                            finputPassword1=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 4:
+                break;
+            case 5:
+                {#//     5 发送验证码请求OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/SendEmail/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        if (data['code'] == 0) {
+                            $('.help-block.token-help').html("SYSTEM ERROR");
+                            $('.help-block.token-help').show();
+                            ftoken=false;
+                        }if (data['code'] == 1) {
+                            $('.help-block.token-help').html("验证码发送成功,请于30分钟内填写");
+                            $('.help-block.token-help').show();
+                            ftoken=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 6:
+                {#//     6 发送注册请求OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/Register/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        {#//请求失败：0；注册成功：1；验证码错误：2；验证码失效：3；#}
+                        if (data['code'] == 1) {
+                            {#//alert("注册成功，将自动跳转到登录页");#}
+                            window.location.href = "//{{ RequestHost}}/Loginpage/";
+                        } else if(data['code'] == 0) {
+                            alert("SYSTEM ERROR");
+                        }if(data['code'] == 2) {
+                            alert("验证码错误");
+                        }if(data['code'] == 3) {
+                            alert("验证码失效");
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+        }
+    }
+    {% endif %}
+    {% if title.login == 1%}
+    function logInAjax(type, data ) {
+        {#// type 1 邮箱输入框失去焦点#}
+        {#        {#// type 2 密码输入框失去焦点#}
+        {#// type 3 点击登录按钮#}
+        {#// type 4 点击注册#}
+        {#// type 5 点击密码重置#}
+        switch (type) {
+            case 1:
+                {#// type 1 邮箱输入框失去焦点,检查用户是否注册OK#}
+                {#//验证邮箱格式是否合法以及是否被注册OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/CheckEmail/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        {#//console.log(data['code']);#}
+                        if (data['code'] == 0) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('SYSTEM ERROR');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 1) {
+                              $('.form-group.noregis.format').removeClass('has-success');
+                             $('.form-group.noregis.format').addClass('has-error');
+                             $('.help-block.noregis.format').html('邮箱未注册');
+                             $('.help-block.noregis.format').show();
+                             fmail=false;
+                        } else if (data['code'] == 2) {
+                             $('.form-group.noregis.format').removeClass('has-error');
+                             $('.form-group.noregis.format').addClass('has-success');
+                             $('.help-block.noregis.format').hide();
+                             fmail=true;
+                        } else if (data['code'] == 3) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('邮箱格式错误');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 4) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('邮箱未激活');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 2:
+                {#//用户输入了密码，啥也不做OK#}
+                break;
+            case 3:
+                {#//用户点击了登录按钮,发送登录请求#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/Loginer/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        {#console.log(data);#}
+                        if (data['code'] == 1) {
+                            da={"so":data['id']};
+                            En(da);
+                        }else if (data['code'] ==0 ) {
+                             alert("SYSTEM ERROR");
+                        }else if (data['code'] ==3) {
+                             alert("密码错误请重新登录");
+                        }else if (data['code'] ==2) {
+                             alert("邮箱未注册");
+                        }
+                        else if (data['code'] ==4) {
+                             alert("账号异常已冻结，请重置密码");
+                             window.location.href = "//{{ RequestHost}}/Resetpwdpage/";
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 4:
+                {#//用户点击了注册OK#}
+                window.location.href = "//{{ RequestHost}}/Regispage/";
+                break;
+            case 5:
+                {#//用户点击了密码重置OK#}
+                window.location.href = "//{{ RequestHost}}/Resetpwdpage/";
+                break;
+        }
+    }
+    {% endif %}
+
+    {% if title.reset == 1%}
+    function resetPwdAjax(type, data) {
+        switch (type) {
+            case 1:
+                {#//邮箱输入框失去焦点#}
+                {#//验证邮箱格式是否合法以及是否被注册OK#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/CheckEmail/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        {#//console.log(data['code']);#}
+                        if (data['code'] == 0) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('SYSTEM ERROR');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 1) {
+                              $('.form-group.noregis.format').removeClass('has-success');
+                             $('.form-group.noregis.format').addClass('has-error');
+                             $('.help-block.noregis.format').html('邮箱未注册');
+                             $('.help-block.noregis.format').show();
+                             fmail=false;
+                        } else if (data['code'] == 2) {
+                             $('.form-group.noregis.format').removeClass('has-error');
+                             $('.form-group.noregis.format').addClass('has-success');
+                             $('.help-block.noregis.format').hide();
+                             fmail=true;
+                        } else if (data['code'] == 3) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('邮箱格式错误');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        } else if (data['code'] == 4) {
+                            $('.form-group.noregis.format').removeClass('has-success');
+                            $('.form-group.noregis.format').addClass('has-error');
+                            $('.help-block.noregis.format').html('邮箱未激活');
+                            $('.help-block.noregis.format').show();
+                            fmail=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 2:
+                {#//密码输入框1失去焦点#}
+                 $.ajax({
+                    url: "//{{ RequestHost}}/CheckPassword/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        if (data['code'] == 0) {
+                             $('.form-group.pwderr1').addClass('has-error');
+                            $('.help-block.pwderr1').html("SYSTEM ERROR");
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').show();
+                            finputPassword1=false;
+                        } else if (data['code'] == 1) {
+                            $('.form-group.pwderr1').addClass('has-success');
+                            $('.form-group.pwderr1').removeClass('has-error');
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').hide();
+                            finputPassword1=true;
+                        } else if (data['code'] == 2) {
+                            $('.form-group.pwderr1').addClass('has-error');
+                            $('.help-block.pwderr1').html("密码应包含：大小写字母、数字、符号，且长度在8位-32位");
+                            $('.help-block.pwdnote').hide();
+                            $('.help-block.pwderr1').show();
+                            finputPassword1=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 3:
+                {#//点击发送验证码#}
+                $.ajax({
+                    url: "//{{ RequestHost}}/SendEmail/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        if (data['code'] == 0) {
+                            $('.help-block.token-help').html("SYSTEM ERROR");
+                            $('.help-block.token-help').show();
+                            ftoken=false;
+                        }if (data['code'] == 1) {
+                            $('.help-block.token-help').html("验证码发送成功,请于30分钟内填写");
+                            $('.help-block.token-help').show();
+                            ftoken=false;
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+            case 4:
+                {#//点击重置按钮#}
+                 $.ajax({
+                    url: "//{{ RequestHost}}/Resetpwd/",
+                    type: "POST",
+                    data: data,
+                    async: true,
+                    dataType: "json",
+                    timeout: 5000,
+                    success: function(data) {
+                        console.log(data);
+                        if (data['code'] == 1) {
+                            {#alert("重置成功,即将跳转到登录页");#}
+                            window.location.href = "//{{ RequestHost}}/Loginpage/";
+                        }else if (data['code'] ==0 ) {
+                             alert("SYSTEM ERROR");
+                        }else if (data['code'] ==3) {
+                             alert("验证码已失效");
+                        }else if (data['code'] ==2) {
+                             alert("验证码错误");
+                        }else if (data['code'] ==4) {
+                             alert("账号异常");
+                        }
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                break;
+        }
+    }
+    {% endif %}
+</script>
+</html>

@@ -1,0 +1,78 @@
+#context{
+    width: 1000px;
+    margin: 0 auto 25px;
+}
+#conleft{
+    width: 625px;
+    height: 785px;
+    border: solid 1px #000;
+}
+#conright{
+    width: 365px;
+    height: 500px;
+}
+#conrighttop{
+    width: 366px;
+    height: 200px;
+    border: solid 1px #000;
+    margin-bottom: 5px;
+}
+#tdfont1{
+    font-size: 25px;
+    line-height: 60px;
+    color: #07223d;
+    margin-top: 40px;
+    margin-left: 25px;
+}
+#tdfont2{
+    font-size: 23px;
+    line-height: 60px;
+    color: #07223d;
+    margin-left: 25px;
+}
+#conrightbottom{
+    width: 366px;
+    height: 578px;
+    border: solid 1px #000;
+}
+#tdbm{
+    height: 50px;
+    width: 365px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+}
+#tdfont3{
+    line-height: 90px;
+    font-size: 25px;
+    color: #07223d;
+    margin-left: 25px;
+}
+.tdbmbor{
+    width: 72px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 23px;
+    color: #07223d;
+    float: left;
+    border-right: 1px solid #000;
+}
+#tdol{
+    width: 300px;
+    margin: 35px auto 0;
+    font-size: 17px;
+    line-height: 25px;
+    color: #07223d;
+}
+#karatt{
+    font-size: 20px;
+    color: #07223d;
+    padding: 8px;
+}
+.karatc{
+    font-size: 17px;
+    color: #07223d;
+    text-indent: 2em;
+    padding: 0 8px;
+}
